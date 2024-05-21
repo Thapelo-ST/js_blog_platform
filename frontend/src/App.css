@@ -1,4 +1,8 @@
-body{
+* {
+    box-sizing: border-box;
+}
+
+body {
     background-color: rgb(212, 222, 169);
 }
 
@@ -16,7 +20,9 @@ header {
     display: flex;
     justify-content: space-between;
     margin-top: 15px;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 5px solid #333;
 }
 
 header a{
@@ -74,7 +80,52 @@ div.entries p.info a.author {
     color:#333;
 }
 
+form.register p.acc-Q {
+    text-decoration: none;
+    color: #888;
+    font-size: .7rem;
+    font-weight: bold;
+}
+
+form.login p.acc-Q {
+    text-decoration: none;
+    color: #888;
+    font-size: .7rem;
+    font-weight: bold;
+}
+
 div.entries p.summary {
     margin: 10px 0;
     line-height: 1.5rem;
+}
+
+form.login, form.register {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+input {
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 100%;
+    padding: 10px 15px;
+    border:0;
+    background-color: #e2e9da;
+    border-bottom: 3px solid #88a598;
+    border-radius: 7px;
+}
+
+button {
+    width: 100%;
+    display: block;
+    background-color: rgb(158, 189, 108);
+    border: 0;
+    border-radius: 7px;
+    padding: 7px;
+    font-weight: bold;
+}
+
+form h1{
+    text-align: center;
 }
