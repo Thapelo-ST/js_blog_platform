@@ -3,7 +3,7 @@ export default function Post() {
 
     <div class="entries">
       <div class="image">
-        <img src="https://picsum.photos/1928/600" />
+        <img src="https://picsum.photos/1928/1360" />
       </div>
       <div class="contex">
         <h2> Simple paragraph </h2>

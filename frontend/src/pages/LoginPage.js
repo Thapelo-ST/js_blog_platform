@@ -6,7 +6,7 @@ export default function Login() {
       <form action="" class="login">
         <h1>Login</h1>
         <input type="text" placeholder="username" />
-        <input type="pasword" placeholder="password" />
+        <input type="password" placeholder="password" />
         <button type="submit">Login</button>
         <p class="acc-Q">Don't have an account? <br></br> <Link to="/register">Register Here</Link> </p>
       </form>
