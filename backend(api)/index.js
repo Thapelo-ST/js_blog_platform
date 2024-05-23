@@ -7,9 +7,11 @@ const jwt = require('jsonwebtoken');
 const app = express();
 const salt = bcrypt.genSaltSync(11);
 const secret = 'secret';
+const cookieParser = require("cookie-parser");
 
 app.use(cors({credentials:true, origin: 'http://localhost:3000'}));
 app.use(express.json());
+app.use(cookieParser());
 
 mongoose.connect('mongodb+srv://blog-admin:HgQYa516dd5MtLNZ@cluster0.zthrzxw.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0');
 
@@ -39,6 +41,10 @@ app.post('/login', async (req, res) => {
     res.json("Wrong Password or Username")
   }
 });
+
+app.get("/profile", (req, res) =>{
+  res.json(req.cookies);
+})
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
