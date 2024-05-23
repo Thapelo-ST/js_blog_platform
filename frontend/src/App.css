@@ -126,6 +126,17 @@ button {
     font-weight: bold;
 }
 
+button.logout-button {
+    width: 30%;
+    background-color: rgb(177, 212, 137);
+}
+
 form h1{
     text-align: center;
+}
+
+footer {
+    padding-top: 10px;
+    padding-left: 20px;
+    border-top: 1px solid #33333331;
 }

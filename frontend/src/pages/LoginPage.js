@@ -34,7 +34,7 @@ if (redirect) {
 
   return (
     <form action="" className="login" onSubmit={loginUser}>
-      <h1>Login</h1>
+      <h1>Sign In</h1>
       <input type="text" placeholder="Enter your username"
         value={username} onChange={ev => setUsername(ev.target.value)} />
       <input type="password" placeholder="Enter your password"
