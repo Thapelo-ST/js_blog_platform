@@ -3,8 +3,10 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const User = require('./models/user')
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 const app = express();
 const salt = bcrypt.genSaltSync(11);
+const secret = 'secret';
 
 app.use(cors());
 app.use(express.json());
@@ -27,7 +29,15 @@ app.post('/register', async (req, res) => {
 app.post('/login', async (req, res) => {
   const {username, password} = req.body;
   const userDocument = await User.findOne({username});
-  res.json(userDocument);
+  const passOk = bcrypt.compareSync(password, userDocument.password);
+  if (passOk) {
+    jwt.sign({username,id: userDocument._id}, secret, {}, (err, token) => {
+      if (err) throw err;
+      res.json(token);
+    });
+  } else {
+    res.json("Wrong Password or Username")
+  }
 });
 
 const PORT = process.env.PORT || 5000;
