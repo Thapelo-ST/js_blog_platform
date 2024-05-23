@@ -42,13 +42,17 @@ app.post('/login', async (req, res) => {
   }
 });
 
+app.post('/logout', (req, res) => {
+  res.cookie('token', '').json('ok'); 
+});
+
 app.get("/profile", (req, res) =>{
   const {token} = req.cookies;
   jwt.verify(token, secret, {},(err, decoded) => {
     if (err) throw err;
     res.json(decoded);
   });
-})
+}); 
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
