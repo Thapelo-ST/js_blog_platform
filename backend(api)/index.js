@@ -8,7 +8,7 @@ const app = express();
 const salt = bcrypt.genSaltSync(11);
 const secret = 'secret';
 
-app.use(cors());
+app.use(cors({credentials:true, origin: 'http://localhost:3000'}));
 app.use(express.json());
 
 mongoose.connect('mongodb+srv://blog-admin:HgQYa516dd5MtLNZ@cluster0.zthrzxw.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0');
@@ -33,7 +33,7 @@ app.post('/login', async (req, res) => {
   if (passOk) {
     jwt.sign({username,id: userDocument._id}, secret, {}, (err, token) => {
       if (err) throw err;
-      res.json(token);
+      res.cookie('token',token).json('Proceed');
     });
   } else {
     res.json("Wrong Password or Username")
