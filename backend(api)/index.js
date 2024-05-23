@@ -31,14 +31,20 @@ app.post('/register', async (req, res) => {
 app.post('/login', async (req, res) => {
   const {username, password} = req.body;
   const userDocument = await User.findOne({username});
+  if (!userDocument) {
+    return res.status(400).json("Wrong Username or password");
+  }
   const passOk = bcrypt.compareSync(password, userDocument.password);
   if (passOk) {
     jwt.sign({username,id: userDocument._id}, secret, {}, (err, token) => {
       if (err) throw err;
-      res.cookie('token',token).json('Proceed');
+      res.cookie('token',token).json({
+          id: userDocument._id,
+          username,
+        });
     });
   } else {
-    res.json("Wrong Password or Username")
+    res.json("Wrong Password or Username");
   }
 });
 
