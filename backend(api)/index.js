@@ -24,6 +24,12 @@ app.post('/register', async (req, res) => {
   }
 });
 
+app.post('/login', async (req, res) => {
+  const {username, password} = req.body;
+  const userDocument = await User.findOne({username});
+  res.json(userDocument);
+});
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server running at localhost: ${PORT}`);
