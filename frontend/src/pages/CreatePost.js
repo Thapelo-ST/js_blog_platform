@@ -1,36 +1,79 @@
-import {useState} from 'react';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
+import { useState } from "react";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
+
+const modules = {
+  toolbar: [
+    [{ header: "1" }, { header: "2" }, { font: [] }],
+    ["bold", "italic", "underline", "strike", "blockquote"],
+    [
+      { list: "ordered" },
+      { list: "bullet" },
+      { indent: "-1" },
+      { indent: "+1" },
+    ],
+    ["link", "image", "video"],
+    ["clean"],
+  ],
+};
+
+const formats = {
+  formats: [
+    "header",
+    "font",
+    "bold",
+    "italic",
+    "underline",
+    "strike",
+    "blockquote",
+    "list",
+    "bullet",
+    "indent",
+    "link",
+    "image",
+    "video",
+  ],
+};
 
 export default function CreatePost() {
-  const [title, useTitle] = useState('');
-  const [summary, useSummary] = useState('');
-  const [content, useContent] = useState('');
-  const modules = {
-    toolbar: [
-      [{ 'header': '1'}, {'header': '2'}, { 'font': [] }],
-      ['bold', 'italic', 'underline','strike','blockquote'],
-      [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
-      ['link', 'image', 'video'],
-      ['clean']
-    ]
-  };
-
-  const formats = {
-    formats: [
-      'header', 'font', 'bold', 'italic',
-      'underline', 'strike', 'blockquote', 'list', 'bullet', 'indent',
-      'link', 'image', 'video', 
-    ]
+  const [title, setTitle] = useState("");
+  const [summary, setSummary] = useState("");
+  const [content, setContent] = useState("");
+  const [files, setFiles] = useState("");
+  function createNewPost(ev) {
+    const data = new FormData();
+    data.set("title", title);
+    data.set("summary", summary);
+    data.set("content", content);
+    data.set("file", files[0]);
+    ev.preventDefault();
+    console.log(files)
   }
 
-  return(
-    <form>
-      <input type='title' placeholder={'Title of your post'}/>
-      <input type='summary' placeholder={'Summary of your post'}/>
-      <input type='file'/>
-      <ReactQuill value={content} modules={modules} formats={formats} />
-      <button style={{marginTop:'10px', marginBottom:'30px'}}>Create Post</button>
+  return (
+    <form onSubmit={createNewPost}>
+      <input
+        type="title"
+        placeholder={"Title of your post"}
+        value={title}
+        onChange={ev => setTitle(ev.target.value)}
+      />
+      <input
+        type="summary"
+        placeholder={"Summary of your post"}
+        value={summary}
+        onChange={ev => setSummary(ev.target.value)}
+      />
+      <input type="file" onChange={ev => setFiles(ev.target.files)} />
+      <ReactQuill
+        value={content}
+        onChange={newValue => setContent(newValue)}
+        modules={modules}
+        formats={formats}
+      />
+      <button style={{ marginTop: "10px", marginBottom: "30px" }}>
+        Create Post
+      </button>
     </form>
-  )
+  );
 }
