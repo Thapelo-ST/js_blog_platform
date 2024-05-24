@@ -4,10 +4,12 @@ const mongoose = require('mongoose');
 const User = require('./models/user')
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const multer = require('multer');
 const app = express();
 const salt = bcrypt.genSaltSync(11);
 const secret = 'secret';
 const cookieParser = require("cookie-parser");
+const uploadMiddleWare = multer({dest: 'uploads/'});
 
 app.use(cors({credentials:true, origin: 'http://localhost:3000'}));
 app.use(express.json());
@@ -58,7 +60,12 @@ app.get("/profile", (req, res) =>{
     if (err) throw err;
     res.json(decoded);
   });
-}); 
+});
+
+
+app.post("/create_post", uploadMiddleWare.single('file'),(req, res) => {
+  res.json({files:req.file});
+});
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
