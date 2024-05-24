@@ -6,10 +6,12 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const multer = require('multer');
 const app = express();
+const Post = require('./models/posts');
 const salt = bcrypt.genSaltSync(11);
 const secret = 'secret';
 const cookieParser = require("cookie-parser");
 const uploadMiddleWare = multer({dest: 'uploads/'});
+const fs = require('fs');
 
 app.use(cors({credentials:true, origin: 'http://localhost:3000'}));
 app.use(express.json());
@@ -63,8 +65,17 @@ app.get("/profile", (req, res) =>{
 });
 
 
-app.post("/create_post", uploadMiddleWare.single('file'),(req, res) => {
-  res.json({files:req.file});
+app.post("/create_post", uploadMiddleWare.single('file'), async (req, res) => {
+  const {originalname, path} = req.file;
+  const parts = originalname.split('.');
+  const ext = parts[parts.length - 1];
+  const newPath = path+'.'+ext;
+  fs.renameSync(path, newPath);
+  const {title, summary, content} = req.body;
+  const postDocument = await Post.create({
+    title, summary, content, cover:newPath,
+  });
+  res.json(postDocument);
 });
 
 const PORT = process.env.PORT || 5000;
