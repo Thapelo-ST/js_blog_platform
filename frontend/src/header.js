@@ -33,8 +33,7 @@ export default function Header() {
       <nav>
         {username &&(
           <>
-          <Link to="/profile">Profile</Link>
-          <Link to="/create">Create New Post</Link>
+          <Link to="/create">Create <br></br> Post</Link>
           <button onClick={logout} className="logout-button">Sign Out</button>
           </>
         )}
@@ -48,3 +47,4 @@ export default function Header() {
     </header>
   );
 }
+// <Link to="/profile">Profile</Link>

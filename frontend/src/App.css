@@ -1,9 +1,10 @@
 * {
     box-sizing: border-box;
 }
+    /*background-color: rgba(169, 188, 222, 0.805);*/
 
 body {
-    background-color: rgb(212, 222, 169);
+    background: linear-gradient(to right, #027bce, rgb(158, 181, 220));
 }
 
 img {
@@ -92,7 +93,7 @@ div.entries div.contex a{
 
 div.entries p.info {
     margin: 6px 0px;
-    color: #888;
+    color: #90e0ef;
     font-size: .7rem;
     font-weight: bold;
     display: flex;
@@ -100,12 +101,12 @@ div.entries p.info {
 }
 
 div.entries p.info a.author {
-    color:#333;
+    color:#00768e;
 }
 
 form.register p.acc-Q {
     text-decoration: none;
-    color: #888;
+    color: #00487c;
     font-size: .7rem;
     font-weight: bold;
 }
@@ -117,7 +118,7 @@ form a{
 
 form.login p.acc-Q {
     text-decoration: none;
-    color: #888;
+    color: #00487c;
     font-size: .7rem;
     font-weight: bold;
 }
@@ -140,14 +141,14 @@ input {
     padding: 10px 15px;
     border:0;
     background-color: #e2e9da;
-    border-bottom: 3px solid #88a598;
+    border-bottom: 4px solid #00487c;
     border-radius: 7px;
 }
 
 button {
     width: 100%;
     display: block;
-    background-color: rgb(158, 189, 108);
+    background-color: #CAF0F8;
     border: 0;
     border-radius: 7px;
     padding: 7px;
@@ -155,10 +156,10 @@ button {
 }
 
 button.logout-button {
-    width: 30%;
+    width: 70%;
     height: 95%;
-    background-color: rgb(177, 212, 137);
-    border-radius: 20px;
+    background-color: #00B4D8;
+    border-radius: 50px;
 }
 
 form.login h1, form.register h1{
@@ -204,7 +205,7 @@ div.postPage time {
     text-align: center;
     display: block;
     font-size: .9rem;
-    color: #738068;
+    color: #90E0EF;
 }
 
 div.postPage div.author {

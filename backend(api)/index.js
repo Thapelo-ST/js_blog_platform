@@ -126,6 +126,21 @@ app.put('/edit_post', uploadMiddleWare.single("file"),async (req, res) => {
   });
 });
 
+app.delete('/delete_post/:id', async (req, res) => {
+  const { id } = req.params;
+  const { token } = req.cookies;
+  jwt.verify(token, secret, {}, async (err, decoded) => {
+    if (err) throw err;
+    const postDocument = await Post.findById(id);
+    const AuthAuthor = JSON.stringify(postDocument.author) === JSON.stringify(decoded.id);
+    if (!AuthAuthor) { 
+      return res.status(400).json('Unauthorised Author');
+    }
+    await Post.findByIdAndDelete(id);
+    return res.json({ message: 'Post deleted successfully' });
+  });
+});
+
 app.get('/posts/:id',async (req, res) => {
   const {id} = req.params;
   const postDocument = await Post.findById(id).populate('author', ['username']);

@@ -1,24 +1,42 @@
-import { useEffect, useState, useContext } from 'react';
-import{useParams} from 'react-router-dom';
+import { useEffect, useState, useContext } from "react";
+import { Navigate, useParams } from "react-router-dom";
 import { formatISO9075 } from "date-fns";
-import { UserContext } from '../UserContext';
+import { UserContext } from "../UserContext";
 import { Link } from "react-router-dom";
 
 export default function PostPage() {
-  const {id} = useParams();
+  const { id } = useParams();
   const [postInfo, setPostInfo] = useState(null);
-  const {userInfo} = useContext(UserContext);
-  useEffect(() =>{
+  const { userInfo } = useContext(UserContext);
+  const [redirect, setRedirect] = useState(false);
+  useEffect(() => {
     // console.log(id);
-    fetch(`http://localhost:5000/posts/${id}`).then(response => {
-      response.json().then(postInfo => {
-      setPostInfo(postInfo);
+    fetch(`http://localhost:5000/posts/${id}`).then((response) => {
+      response.json().then((postInfo) => {
+        setPostInfo(postInfo);
       });
     });
   }, []);
+
+  const deletePost = async () => {
+    const response = await fetch(`http://localhost:5000/delete_post/${id}`, {
+      method: "DELETE",
+      credentials: "include",
+    });
+    const data = await response.json();
+    // console.log(data.message);
+    if (response.ok) {
+      setRedirect(true);
+      alert("Post deleted successfully");
+    }
+  };
+  if (redirect){
+    <Navigate to='/' />
+    }
   if (!postInfo) {
     return <h1>Loading...</h1>;
   }
+
   return (
     <div className="postPage">
       <h1>{postInfo.title}</h1>
@@ -44,7 +62,7 @@ export default function PostPage() {
             Edit
           </Link>
           <br></br>
-          <Link className="delete-button" href={`/delete/${postInfo._id}`}>
+          <a className="delete-button" onClick={() => deletePost(postInfo._id)}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 16 16"
@@ -58,7 +76,7 @@ export default function PostPage() {
               />
             </svg>
             Delete
-          </Link>
+          </a>
         </div>
       )}
       <div className="image">
