@@ -13,3 +13,15 @@ Building a blog platform where users can create, edit, and delete blog posts. In
     Make application responsive
     Bonus: implement a markdown editor for users to create their blog posts on your platform
     Bonus: allow users to upload header images for their blog posts
+
+
+to run the frontend cd to frontend and use npm start
+taps@DESKTOP-3V1N9LI:~/projects/js_blog_platform$ cd frontend/
+taps@DESKTOP-3V1N9LI:~/projects/js_blog_platform/frontend$ npm start
+
+
+to run the backend cd to backend and use nodemon index
+taps@DESKTOP-3V1N9LI:~/projects/js_blog_platform$ cd backend(api)/
+taps@DESKTOP-3V1N9LI:~/projects/js_blog_platform/backend(api)$ nodemon index.js
+
+
