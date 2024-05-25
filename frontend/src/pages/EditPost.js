@@ -1,55 +1,22 @@
-import { useState } from "react";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
-import { Navigate } from "react-router-dom";
+import {useState} from 'react';
+import { Navigate } from 'react-router-dom';
+import Editor from '../Editor';
 
-const modules = {
-  toolbar: [
-    [{ header: "1" }, { header: "2" }, { font: [] }],
-    ["bold", "italic", "underline", "strike", "blockquote"],
-    [
-      { list: "ordered" },
-      { list: "bullet" },
-      { indent: "-1" },
-      { indent: "+1" },
-    ],
-    ["link", "image", "video"],
-    ["clean"],
-  ],
-};
 
-const formats = {
-  formats: [
-    "header",
-    "font",
-    "bold",
-    "italic",
-    "underline",
-    "strike",
-    "blockquote",
-    "list",
-    "bullet",
-    "indent",
-    "link",
-    "image",
-    "video",
-  ],
-};
-
-export default function CreatePost() {
+export default function EditPost() {
   const [title, setTitle] = useState("");
   const [summary, setSummary] = useState("");
   const [content, setContent] = useState("");
   const [files, setFiles] = useState("");
   const [redirect, setRedirect] = useState(false);
-  async function createNewPost(ev) {
+  async function updatePost(ev) {
     const data = new FormData();
     data.set("title", title);
     data.set("summary", summary);
     data.set("content", content);
     data.set("file", files[0]);
     ev.preventDefault();
-    const response = await fetch("http://localhost:5000/create_post", {
+    const response = await fetch("http://localhost:5000/update_post", {
       method: "POST",
       body: data,
       credentials: 'include',
@@ -58,14 +25,13 @@ export default function CreatePost() {
       setRedirect(true);
     }
   }
-
   if (redirect) {
     return <Navigate to={"/"} />;
   }
 
   return (
-    <form onSubmit={createNewPost}>
-      <h1>Creating Post</h1>
+    <form onSubmit={updatePost}>
+      <h1>Editing Post</h1>
       <input
         type="title"
         placeholder={"Title of your post"}
@@ -79,12 +45,7 @@ export default function CreatePost() {
         onChange={(ev) => setSummary(ev.target.value)}
       />
       <input type="file" onChange={(ev) => setFiles(ev.target.files)} />
-      <ReactQuill
-        value={content}
-        onChange={(newValue) => setContent(newValue)}
-        modules={modules}
-        formats={formats}
-      />
+      <Editor onChange={setContent} value={content} />
       <button style={{ marginTop: "10px", marginBottom: "30px" }}>
         Create Post
       </button>

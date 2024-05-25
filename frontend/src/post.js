@@ -2,8 +2,8 @@ import {format} from 'date-fns';
 import { Link } from 'react-router-dom';
 export default function Post({_id, title, summary, cover, content, createdAt,author}) {
   return (
-    <div class="entries">
-      <div class="image">
+    <div className="entries">
+      <div className="image">
         <Link to={`/post/${_id}`}>
           <img
             src={"http://localhost:5000/" + cover}
@@ -11,15 +11,15 @@ export default function Post({_id, title, summary, cover, content, createdAt,aut
           />
         </Link>
       </div>
-      <div class="contex">
+      <div className="contex">
         <Link to={`/post/${_id}`}>
           <h2> {title}</h2>
         </Link>
-        <p class="info">
-          <a class="author">{author.username}</a>
+        <p className="info">
+          <a className="author">{author.username}</a>
           <time>{format(new Date(createdAt), "MMM - d - YYY  HH:MM")}</time>
         </p>
-        <p class="summary">{summary}</p>
+        <p className="summary">{summary}</p>
       </div>
     </div>
   );
