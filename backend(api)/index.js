@@ -96,7 +96,37 @@ app.get("/create_post", async (req, res) => {
   res.json(posts);
 });
 
-app.get('/posts/:id', async (req, res) => {
+app.put('/edit_post', uploadMiddleWare.single("file"),async (req, res) => {
+  let newPath = null;
+  if (req.file) {
+    const { originalname, path } = req.file;
+    const parts = originalname.split(".");
+    const ext = parts[parts.length - 1];
+    newPath = path + "." + ext;
+    const { token } = req.cookies;
+    fs.renameSync(path, newPath);
+  }
+
+  const {token} = req.cookies;
+  jwt.verify(token, secret, {}, async (err, decoded) => {
+    if (err) throw err;
+    const { id, title, summary, content } = req.body;
+    const postDocument = await Post.findById(id);
+    const AuthAuthor = JSON.stringify(postDocument.author) === JSON.stringify(decoded.id);
+    //res.json({AuthAuthor, postDocument, decoded});
+    if (!AuthAuthor) { 
+      return res.status(400).json('Unauthorised Author');
+    }
+    postDocument.title = title;
+    postDocument.summary = summary; 
+    postDocument.content = content;
+    postDocument.cover = newPath ? newPath : postDocument.cover;
+    await postDocument.save();
+    res.json(postDocument);
+  });
+});
+
+app.get('/posts/:id',async (req, res) => {
   const {id} = req.params;
   const postDocument = await Post.findById(id).populate('author', ['username']);
   res.json(postDocument);
