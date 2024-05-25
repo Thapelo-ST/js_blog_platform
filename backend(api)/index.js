@@ -96,6 +96,12 @@ app.get("/create_post", async (req, res) => {
   res.json(posts);
 });
 
+app.get('/posts/:id', async (req, res) => {
+  const {id} = req.params;
+  const postDocument = await Post.findById(id).populate('author', ['username']);
+  res.json(postDocument);
+});
+
 // Listening point
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
