@@ -15,6 +15,10 @@ Building a blog platform where users can create, edit, and delete blog posts. In
     Bonus: allow users to upload header images for their blog posts
 
 
+
+First run $ npm install on backend and frontend and the root folder
+
+
 to run the frontend cd to frontend and use npm start
 taps@DESKTOP-3V1N9LI:~/projects/js_blog_platform$ cd frontend/
 taps@DESKTOP-3V1N9LI:~/projects/js_blog_platform/frontend$ npm start
