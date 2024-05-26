@@ -14,7 +14,7 @@ Building a blog platform where users can create, edit, and delete blog posts. In
     Bonus: implement a markdown editor for users to create their blog posts on your platform
     Bonus: allow users to upload header images for their blog posts
 
-
+## HOW TO RUN THE APP
 
 First run $ npm install on backend and frontend and the root folder
 
@@ -28,4 +28,8 @@ to run the backend cd to backend and use nodemon index
 taps@DESKTOP-3V1N9LI:~/projects/js_blog_platform$ cd backend(api)/
 taps@DESKTOP-3V1N9LI:~/projects/js_blog_platform/backend(api)$ nodemon index.js
 
+# Resources used
 
+Youtube was a guidiance for the react side of the application
+Yarn was the library for the components and some of the imports found for the application
+JSONWebToken was the one used for the tokenisation and configuration of applicaiton's user.
