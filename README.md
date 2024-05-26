@@ -1,10 +1,10 @@
-# Blog Platform:
-## Tech Stack:
+# Blog Platform
+## Tech Stack
 
 JavaScript (React for frontend, Node for backend), MongoDB
-## Description:
+## Description
 Building a blog platform where users can create, edit, and delete blog posts. Integrating with a database (MongoDB or SQL) for storing and retrieving blog data.
-## Milestones:
+## Milestones
 
     Implement authentication
     Store blog posts
