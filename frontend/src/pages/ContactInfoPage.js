@@ -1,8 +1,12 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 
 export default function ContactPage() {
   return (
     <div>
+      <Helmet>
+        <title>Contact Information - Insights</title>
+      </Helmet>
       <h1>Contact Information</h1>
       <div className="contact-card">
         <h2>Thapelo SS Ncube</h2>
@@ -14,17 +18,15 @@ export default function ContactPage() {
         </p>
       </div>
       <div className="contact-card">
-        <h2>Jane Smith</h2>
-        <p>Frontend Developer</p>
-        <p>Email: janesmith@example.com</p>
+        <h2>Demakatso May</h2>
+        <p>Backend Developer</p>
+        <p>Email: demakatsomay@gmail.com</p>
         <p>
           GitHub:{" "}
           <a
-            href="https://github.com/janesmith"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="https://github.com/demakatso"
           >
-            github.com/janesmith
+            github.com/demakatso
           </a>
         </p>
       </div>

@@ -2,6 +2,8 @@ import { useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { Navigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
+
 
 const modules = {
   toolbar: [
@@ -65,6 +67,9 @@ export default function CreatePost() {
 
   return (
     <form onSubmit={createNewPost}>
+      <Helmet>
+        <title>Create Post - Insights</title>
+      </Helmet>
       <h1>Creating Post</h1>
       <input
         type="title"

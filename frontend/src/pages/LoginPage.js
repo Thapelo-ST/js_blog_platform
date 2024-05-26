@@ -1,6 +1,7 @@
 import { Link, Navigate } from 'react-router-dom';
 import { useState, useContext } from 'react';
 import { UserContext } from '../UserContext';
+import { Helmet } from "react-helmet";
 
 
 export default function Login() {
@@ -34,13 +35,27 @@ if (redirect) {
 
   return (
     <form action="" className="login" onSubmit={loginUser}>
-      <h1>Sign In</h1>
-      <input type="text" placeholder="Enter your username"
-        value={username} onChange={ev => setUsername(ev.target.value)} />
-      <input type="password" placeholder="Enter your password"
-        value={password} onChange={ev => setPassword(ev.target.value)} />
+      <Helmet>
+        <title>Sign In - Insights</title>
+      </Helmet>
+      <h1>Log In</h1>
+      <input
+        type="text"
+        placeholder="Enter your username"
+        value={username}
+        onChange={(ev) => setUsername(ev.target.value)}
+      />
+      <input
+        type="password"
+        placeholder="Enter your password"
+        value={password}
+        onChange={(ev) => setPassword(ev.target.value)}
+      />
       <button type="submit">LOGIN</button>
-      <p class="acc-Q">Don't have an account? <br></br> <Link to="/register">Register Here</Link> </p>
+      <p class="acc-Q">
+        Don't have an account? <br></br>{" "}
+        <Link to="/register">Register Here</Link>{" "}
+      </p>
     </form>
   );
 }

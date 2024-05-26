@@ -1,6 +1,11 @@
+import { Helmet } from "react-helmet";
+
 export default function AboutPage() {
   return (
     <div className="about">
+    <Helmet>
+      <title>About - Insights</title>
+    </Helmet>
       <h1> About Page for the Blog Platform </h1>
       <h2>
         <u>About Our Blog Platform</u>

@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
 import Editor from '../Editor';
+import { Helmet } from "react-helmet";
+
 
 
 export default function EditPost() {
@@ -47,6 +49,9 @@ export default function EditPost() {
 
   return (
     <form onSubmit={updatePost}>
+      <Helmet>
+        <title>Editing - Insights</title>
+      </Helmet>
       <h1>Editing Post</h1>
       <input
         type="title"

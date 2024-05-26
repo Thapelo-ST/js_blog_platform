@@ -1,6 +1,8 @@
 import {Link} from 'react-router-dom';
 import {useEffect, useContext } from 'react';
 import { UserContext } from './UserContext';
+import { Helmet } from "react-helmet";
+
 
 
 export default function Header() {
@@ -29,12 +31,16 @@ export default function Header() {
 
   return (
     <header>
+      <Helmet>
+        <title>Home - Insights</title>
+      </Helmet>
       <Link to="/" className="logo">
-        Javascript Blog
+        Insights
       </Link>
       <nav>
         {username && (
           <>
+          <span>{username}</span>
             <Link to="/">Home</Link>
             <Link to="/about">About</Link>
             <Link to="/contact">Contact Info</Link>

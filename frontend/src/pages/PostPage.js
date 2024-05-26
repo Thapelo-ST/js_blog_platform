@@ -3,6 +3,8 @@ import { Navigate, useParams } from "react-router-dom";
 import { formatISO9075 } from "date-fns";
 import { UserContext } from "../UserContext";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
+
 
 export default function PostPage() {
   const { id } = useParams();
@@ -40,6 +42,9 @@ export default function PostPage() {
   return (
     <div className="postPage">
       <h1>{postInfo.title}</h1>
+      <Helmet>
+        <title>{postInfo.title} - Insights</title>
+      </Helmet>
       <time>{formatISO9075(new Date(postInfo.createdAt))}</time>
       <div className="author">written by @{postInfo.author.username}</div>
       {userInfo.id === postInfo.author._id && (

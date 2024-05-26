@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import { Helmet } from "react-helmet";
+
 
 export default function Register() {
   const [username, setUsername] = useState('');
@@ -20,13 +22,26 @@ export default function Register() {
 
   return (
     <form action="" className="register" onSubmit={registerUser}>
+      <Helmet>
+        <title>Register - Insights</title>
+      </Helmet>
       <h1>Register</h1>
-      <input type="text" placeholder="Enter your username"
-        value={username} onChange={ev => setUsername(ev.target.value)} />
-      <input type="pasword" placeholder="Enter your password"
-        value={password} onChange={ev => setPassword(ev.target.value)} />
+      <input
+        type="text"
+        placeholder="Enter your username"
+        value={username}
+        onChange={(ev) => setUsername(ev.target.value)}
+      />
+      <input
+        type="pasword"
+        placeholder="Enter your password"
+        value={password}
+        onChange={(ev) => setPassword(ev.target.value)}
+      />
       <button type="submit">Register</button>
-      <p className="acc-Q">Already have an account? <br></br> <Link to="/login">Log In Here</Link> </p>
+      <p className="acc-Q">
+        Already have an account? <br></br> <Link to="/login">Log In Here</Link>{" "}
+      </p>
     </form>
   );
 }
