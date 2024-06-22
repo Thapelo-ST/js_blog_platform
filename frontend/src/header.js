@@ -35,11 +35,9 @@ export default function Header() {
       <nav>
         {username && (
           <>
-            <Link to="/">
-              Home
-            </Link>
-            <a>About</a>
-            <a>Contact Info</a>
+            <Link to="/">Home</Link>
+            <Link to="/about">About</Link>
+            <Link to="/contact">Contact Info</Link>
             <Link to="/create">
               Create <br></br> Post
             </Link>
@@ -50,11 +48,9 @@ export default function Header() {
         )}
         {!username && (
           <>
-            <Link to="/">
-              Home
-            </Link>
-            <a>About</a>
-            <a>Contact Info</a>
+            <Link to="/">Home</Link>
+            <Link to="/about">About</Link>
+            <Link to="/contact">Contact Info</Link>
             <Link to="/login">Sign In</Link>
             <Link to="/register">Register</Link>
           </>
